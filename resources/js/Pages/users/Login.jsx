@@ -20,6 +20,12 @@ export default function  Login() {
                             <label htmlFor="password" className="block text-lg font-medium">Password</label>
                             <input type="password" className="mt-1 mb-7 w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring=blue-600" placeholder="Enter Your Password" id="password" name="password" required />
                         </div>
+                        <div className="form-control mb-3">
+                            <label className="label cursor-pointer flex items-center">
+                                <input type="checkbox" className="checkbox mr-2 w-4 h-4" />
+                                <span className="label-text text-lg">Remember me</span>
+                            </label>
+                        </div>
                         <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Sign In</button>
                         <div class="text-center mt-5">
                             <span>Don't have an account? </span><a href="/registerTokoEni" className="text-blue-700 underline">Register here</a>

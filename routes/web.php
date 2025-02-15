@@ -2,6 +2,7 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +34,10 @@ Route::get('/cartTokoEni', function() {
 Route::get('/profile', function() {
     return Inertia::render('users/Profile');
 });
-Route::get('/registerTokoEni', function() {
-    return Inertia::render('users/Register');
-});
-Route::get('/loginTokoEni', function() {
-    return Inertia::render('users/Login');
-});
+Route::get('/registerTokoEni', [CustomerController::class, 'registerPageTokoEni'])->name('registerPageTokoEni');
+Route::post('/registerTokoEni', [CustomerController::class, 'registerTokoEni'])->name('registerTokoEni');
+
+Route::get('/loginTokoEni', [CustomerController::class, 'loginPageTokoEni'])->name('loginPageTokoEni');
+Route::post('/loginTokoEni', [CustomerController::class, 'loginTokoEni'])->name('loginTokoEni');
+
+Route::get('/logoutTokoEni', [CustomerController::class, 'logoutTokoEni'])->name('logoutTokoEni');

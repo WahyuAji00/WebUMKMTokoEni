@@ -63,4 +63,14 @@ class CustomerController extends Controller
         $request->session()->regenerate();
         return redirect()->intended('/');
     }
+
+    public function logoutTokoEni(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/loginTokoEni')->with('success', 'Logout berhasil!');
+    }
 }

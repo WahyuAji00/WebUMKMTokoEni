@@ -6,7 +6,7 @@ import Footer from "./Components/Footer";
 export default function Shop() {
     return (
         <div data-theme="light">
-            <title>Shop</title>
+            <title>Shop Toko Eni</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" />
             <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css" rel="stylesheet" type="text/css" />
 
@@ -21,17 +21,27 @@ export default function Shop() {
                 </div>
                 <div className="flex items-center justify-center mt-14">
                     <div className="p-8 rounded-xl shadow-2xl w-full max-w-xs md:max-w-7xl backdrop-filter backdrop-blur-lg">
-                        {/* Dropdown Category */}
-                        <div className="dropdown dropdown-right">
-                            <div tabIndex={0} role="button" className="btn btn-neutral m-1">Category</div>
-                            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-50 w-52 p-2 shadow">
-                                <li><a>Pen</a></li>
-                                <li><a>Pencil</a></li>
-                                <li><a>Notebook</a></li>
-                                <li><a>Eraser</a></li>
-                                <li><a>Marker</a></li>
-                                <li><a>Other</a></li>
-                            </ul>
+                        <div className="flex justify-between w-full p-4">
+                            {/* Dropdown Category */}
+                            <div className="dropdown dropdown-right">
+                                <div tabIndex={0} role="button" className="btn btn-neutral m-1">Category</div>
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-50 w-52 p-2 shadow">
+                                    <li><a>Pen</a></li>
+                                    <li><a>Pencil</a></li>
+                                    <li><a>Notebook</a></li>
+                                    <li><a>Eraser</a></li>
+                                    <li><a>Marker</a></li>
+                                    <li><a>Other</a></li>
+                                </ul>
+                            </div>
+                            {/* Dropdown Filter */}
+                            <div className="dropdown dropdown-left">
+                                <div tabIndex={0} role="button" className="btn btn-neutral m-1">Filter</div>
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-50 w-52 p-2 shadow">
+                                    <li><a>A-Z</a></li>
+                                    <li><a>Z-A</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

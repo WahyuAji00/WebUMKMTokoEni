@@ -7,7 +7,7 @@ import Footer from "./Components/Footer";
 export default function Home() {
     return (
         <div data-theme="light">
-            <title>Home</title>
+            <title>Home Toko Eni</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
             <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
 

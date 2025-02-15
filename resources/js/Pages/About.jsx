@@ -6,7 +6,7 @@ import Footer from "./Components/Footer";
 export default function About() {
     return (
         <div data-theme="light">
-            <title>About</title>
+            <title>About Toko Eni</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" />
             <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css" rel="stylesheet" type="text/css" />
 

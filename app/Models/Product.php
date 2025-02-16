@@ -31,4 +31,14 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function reduceStock($quantity)
+    {
+        if ($this->stock >= $quantity) {
+            $this->stock -= $quantity;
+            $this->save();
+        } else {
+            throw new \Exception('Stok tidak mencukupi');
+        }
+    }
 }

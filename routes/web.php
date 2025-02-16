@@ -19,15 +19,26 @@ use App\Http\Controllers\CustomerController;
 Route::get('/', function() {
     return Inertia::render('Home');
 });
+
+
 Route::get('/shopTokoEni', function() {
     return Inertia::render('Shop');
 });
+Route::prefix('shopTokoEni')->group(function() {
+    Route::get('/detailProduct/{id}', [CustomerController::class, 'showDetailProduct'])->name('showDetailProduct');
+});
+
+
 Route::get('/aboutTokoEni', function() {
     return Inertia::render('About');
 });
-Route::get('/cartTokoEni', function() {
-    return Inertia::render('Cart');
+
+
+Route::get('/cartTokoEni', [CustomerController::class, 'cartPage'])->name('cartPage');
+Route::prefix('cartTokoEni')->group(function() {
+    Route::post('/addToCart', [CustomerController::class, 'addToCart'])->name('addToCart');
 });
+
 
 
 // User

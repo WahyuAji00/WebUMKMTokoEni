@@ -15,7 +15,7 @@ export default function ParticlesBackground () {
             init={particlesInit}
             options={{
                 particles: {
-                    number: {value: 80, density: {enable: true, area: 1500}},
+                    number: {value: 80, density: {enable: true, area: 1000}},
                     shape: {type: "star"},
                     size: {value: 5, random: true},
                     move: {enable: true, speed: 0.5},

@@ -24,12 +24,13 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->id('admin')
-            ->path('admin')
+            ->id('adminTokoEni')
+            ->path('adminTokoEni')
             ->login()
             ->colors([
                 'primary' => Color::Blue,
             ])
+            ->brandName('Toko Eni')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

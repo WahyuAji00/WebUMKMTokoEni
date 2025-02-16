@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Components/Navbar";
 import { Link } from "@inertiajs/react";
 import ParticlesBackground from "./Components/ParticlesBackground";
 import Footer from "./Components/Footer";
 
 export default function Home() {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/api/products")
+            .then(response => response.json())
+            .then(data => {
+                setProducts(data);
+            })
+            .catch(error => {
+                console.error("Error fetching products:", error);
+            });
+    }, []);
+
     return (
         <div data-theme="light">
             <title>Home Toko Eni</title>
@@ -32,24 +45,24 @@ export default function Home() {
                 </div>
 
                 {/* Arrow Down */}
-                <div className="flex justify-center mt-10 text-black relative z-10">
+                {/* <div className="flex justify-center mt-10 text-black relative z-10">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-28">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>
-                </div>
+                </div> */}
 
 
                 {/* Category */}
-                <div className="category pb-40">
+                {/* <div className="category pb-40">
                     <h1 className="font-bold text-white justify-center text-2xl md:text-4xl r pt-5 flex relative z-10">Category</h1>
                     <div className="pt-8">
                         <div className="flex items-center justify-center">
-                            <div className="p-8 rounded-xl shadow-2xl w-full max-w-xs md:max-w-7xl backdrop-filter backdrop-blur-lg">
+                            <div className="p-2 rounded-xl shadow-2xl w-full max-w-xs md:max-w-7xl backdrop-filter backdrop-blur-lg">
 
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Arrow Down */}
                 <div className="flex justify-center mt-5 text-black relative z-10">
@@ -60,11 +73,38 @@ export default function Home() {
 
                 {/* Product */}
                 <div className="product">
-                    <h1 className="font-bold text-white justify-center text-2xl md:text-4xl pt-5 flex relative z-10">Product</h1>
+                    <h1 className="font-bold text-white justify-center text-2xl md:text-4xl pt-5 flex relative z-10">Our Product</h1>
                     <div className="pt-8">
                         <div className="flex items-center justify-center">
-                            <div className="p-8 rounded-xl shadow-2xl w-full max-w-xs md:max-w-7xl backdrop-filter backdrop-blur-lg">
-
+                            <div className="p-2 rounded-3xl shadow-2xl w-full max-w-xs md:max-w-7xl backdrop-filter backdrop-blur-lg border-4 border-white">
+                                {products.length > 0 ? (
+                                    <div className="grid grid-cols-2 md:grid-cols-6 gap-4 p-4">
+                                        {products.map((product, index) => (
+                                            <div key={index}>
+                                                <Link href={`/shopTokoEni/detailProduct/${encodeURIComponent(product.name)}`} className="mx-auto">
+                                                    <img src={`http://127.0.0.1:8000/storage/${product.image}`} alt={product.name} className="rounded-t-xl w-full h-auto" />
+                                                </Link>
+                                                <div className="px-2 rounded-b-xl bg-gray-200 text-center py-3">
+                                                    <Link href={`/shoptokoEni/detailProduct/${encodeURIComponent(product.name)}`} className="text-black text-sm font-bold no-underline block">
+                                                        <span className="block truncate max-w-full text-ellipsis whitespace-nowrap">{product.name}</span>
+                                                    </Link>
+                                                    <h6 className="text-orange-500 text-xs font-semibold">
+                                                        IDR {new Intl.NumberFormat("id-ID").format(product.price)}
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p className="text-center text-white text-2xl pt-2 font-bold">No products available</p>
+                                )}
+                                <div className="flex justify-center pt-4">
+                                    <Link href="/shopTokoEni">
+                                        <button className="btn font-bold btn-neutral text-white px-4 py-2 rounded-md mb-6">
+                                            Show More
+                                        </button>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>

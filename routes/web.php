@@ -20,12 +20,13 @@ Route::get('/', function() {
     return Inertia::render('Home');
 });
 
-
 Route::get('/shopTokoEni', function() {
     return Inertia::render('Shop');
 });
-Route::prefix('shopTokoEni')->group(function() {
-    Route::get('/detailProduct/{id}', [CustomerController::class, 'showDetailProduct'])->name('showDetailProduct');
+Route::middleware('auth.customer')->group(function(){
+    Route::prefix('shopTokoEni')->group(function() {
+        Route::get('/detailProduct/{id}', [CustomerController::class, 'showDetailProduct'])->name('showDetailProduct');
+    });
 });
 
 
@@ -34,9 +35,12 @@ Route::get('/aboutTokoEni', function() {
 });
 
 
-Route::get('/cartTokoEni', [CustomerController::class, 'cartPage'])->name('cartPage');
-Route::prefix('cartTokoEni')->group(function() {
-    Route::post('/addToCart', [CustomerController::class, 'addToCart'])->name('addToCart');
+Route::middleware('auth.customer')->group(function() {
+    Route::get('/cartTokoEni', [CustomerController::class, 'cartPage'])->name('cartPage');
+    Route::prefix('cartTokoEni')->group(function() {
+        Route::post('/addToCart', [CustomerController::class, 'addToCart'])->name('addToCart');
+        Route::delete('/deleteCart/{id}', [CustomerController::class, 'deleteCart'])->name('deleteCart');
+    });
 });
 
 

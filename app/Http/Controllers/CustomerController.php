@@ -14,6 +14,7 @@ use Illuminate\Validation\Rules\Password;
 
 class CustomerController extends Controller
 {
+    // Register Page
     public function registerPageTokoEni(): Response {
         return Inertia::render('customers/Register');
     }
@@ -38,6 +39,8 @@ class CustomerController extends Controller
         return redirect()->route('loginPageTokoEni');
     }
 
+
+    // Login Page
     public function loginPageTokoEni(): Response {
         return Inertia::render('customers/Login');
     }
@@ -58,6 +61,8 @@ class CustomerController extends Controller
         return back()->withErrors(['email' => 'Email atau password salah.']);
     }
 
+
+    // Logout
     public function logoutTokoEni(Request $request)
     {
         Auth::guard('customer')->logout();
@@ -68,6 +73,8 @@ class CustomerController extends Controller
         return redirect('/loginTokoEni')->with('success', 'Logout berhasil!');
     }
 
+
+    // Detail
     public function showDetailProduct($name) {
         $decodedName = urldecode($name);
 
@@ -78,6 +85,8 @@ class CustomerController extends Controller
         ]);
     }
 
+
+    // Cart
     public function cartPage()
     {
         $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();

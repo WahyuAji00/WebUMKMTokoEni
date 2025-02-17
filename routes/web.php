@@ -52,7 +52,11 @@ Route::get('/profile', function() {
 Route::get('/registerTokoEni', [CustomerController::class, 'registerPageTokoEni'])->name('registerPageTokoEni');
 Route::post('/registerTokoEni', [CustomerController::class, 'registerTokoEni'])->name('registerTokoEni');
 
-Route::get('/loginTokoEni', [CustomerController::class, 'loginPageTokoEni'])->name('loginPageTokoEni');
-Route::post('/loginTokoEni', [CustomerController::class, 'loginTokoEni'])->name('loginTokoEni');
+Route::middleware('auth.guest')->group(function() {
+    Route::get('/loginTokoEni', [CustomerController::class, 'loginPageTokoEni'])->name('loginPageTokoEni');
+    Route::post('/loginTokoEni', [CustomerController::class, 'loginTokoEni'])->name('loginTokoEni');
+});
 
-Route::get('/logoutTokoEni', [CustomerController::class, 'logoutTokoEni'])->name('logoutTokoEni');
+Route::middleware('auth.customer')->group(function() {
+    Route::get('/logoutTokoEni', [CustomerController::class, 'logoutTokoEni'])->name('logoutTokoEni');
+});

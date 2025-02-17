@@ -35,7 +35,7 @@ export default function  Login() {
                         </div>
                         <div className="form-control mb-3">
                             <label className="label cursor-pointer flex items-center">
-                                <input type="checkbox" className="checkbox mr-2 w-4 h-4" id="remember" checked={data.remember} onChange={(event) => setData('remember', event.target.checked)} />
+                                <input type="checkbox" className="checkbox mr-2 w-4 h-4" name="remember" id="remember" checked={data.remember} onChange={(event) => setData('remember', event.target.checked)} />
                                 <span className="label-text text-lg">Remember me</span>
                             </label>
                         </div>

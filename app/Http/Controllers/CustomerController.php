@@ -48,7 +48,7 @@ class CustomerController extends Controller
             'password' => ['required'],
         ]);
 
-        $remember = $request->has('remember');
+        $remember_customer = $request->boolean('remember');
 
         $customer = Customer::where('email', $credentials['email'])->first();
 
@@ -60,7 +60,7 @@ class CustomerController extends Controller
             return back()->withErrors(['password' => 'Password salah.'])->onlyInput('password');
         }
 
-        Auth::guard('web')->login($customer, $remember);
+        Auth::guard('web')->login($customer, $remember_customer);
 
         $request->session()->regenerate();
         return redirect()->intended('/');

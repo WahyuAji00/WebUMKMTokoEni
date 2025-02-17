@@ -15,7 +15,7 @@ use Illuminate\Validation\Rules\Password;
 class CustomerController extends Controller
 {
     public function registerPageTokoEni(): Response {
-        return Inertia::render('users/Register');
+        return Inertia::render('customers/Register');
     }
 
     public function registerTokoEni(Request $request) {
@@ -33,42 +33,34 @@ class CustomerController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        Auth::login($customer);
+        Auth::guard('customer')->login($customer);
 
         return redirect()->route('loginPageTokoEni');
     }
 
     public function loginPageTokoEni(): Response {
-        return Inertia::render('users/Login');
+        return Inertia::render('customers/Login');
     }
 
     public function loginTokoEni(Request $request) {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            'email' => 'required|email',
+            'password' => 'required',
+            'remember' => 'boolean'
         ]);
 
-        $remember_customer = $request->boolean('remember');
+        $remember = $request->has('remember');
 
-        $customer = Customer::where('email', $credentials['email'])->first();
-
-        if (!$customer) {
-            return back()->withErrors(['email' => 'Akun tidak ditemukan.'])->onlyInput('email');
+        if (Auth::guard('customer')->attempt(['email' => $credentials['email'], 'password' => $credentials['password']], $remember)) {
+            return redirect()->route('Home');
         }
 
-        if (!Hash::check($credentials['password'], $customer->password)) {
-            return back()->withErrors(['password' => 'Password salah.'])->onlyInput('password');
-        }
-
-        Auth::guard('web')->login($customer, $remember_customer);
-
-        $request->session()->regenerate();
-        return redirect()->intended('/');
+        return back()->withErrors(['email' => 'Email atau password salah.']);
     }
 
     public function logoutTokoEni(Request $request)
     {
-        Auth::logout();
+        Auth::guard('customer')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

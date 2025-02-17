@@ -18,7 +18,7 @@ use App\Http\Controllers\CustomerController;
 // Navbar
 Route::get('/', function() {
     return Inertia::render('Home');
-});
+})->name('Home');
 
 Route::get('/shopTokoEni', function() {
     return Inertia::render('Shop');

@@ -16,12 +16,9 @@ class AuthCustomer
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
-            return Inertia::render('users/Login', [
-                'message' => 'Anda harus login terlebih dahulu untuk melihat detail produk'
-            ]);
+        if (!Auth::guard('customer')->check()) {
+            return redirect()->route('loginTokoEni');
         }
-
         return $next($request);
     }
 }

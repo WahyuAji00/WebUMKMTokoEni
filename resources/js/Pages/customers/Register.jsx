@@ -18,6 +18,7 @@ export default function Register() {
         <div data-theme="light">
             <title>Register Toko Eni</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+            <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
 
             <div className="min-h-screen flex items-center justify-center" style={{ backgroundImage: "url(https://www.mbizmarket.co.id/news/wp-content/uploads/2022/06/Untitled-design-2.png)", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}>
                 <div className="p-8 rounded-xl shadow-2xl w-full max-w-xs md:max-w-lg backdrop-filter backdrop-blur-2xl">

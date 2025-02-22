@@ -6,6 +6,7 @@ import Footer from "./Components/Footer";
 
 export default function Home() {
     const [products, setProducts] = useState([]);
+    const [types, setTypes] = useState([]);
 
     useEffect(() => {
         fetch("http://127.0.0.1:8000/api/products")
@@ -15,6 +16,15 @@ export default function Home() {
             })
             .catch(error => {
                 console.error("Error fetching products:", error);
+            });
+
+        fetch("http://127.0.0.1:8000/api/types")
+            .then(response => response.json())
+            .then(data => {
+                setTypes(data);
+            })
+            .catch(error => {
+                console.error("Error fetching types:", error);
             });
     }, []);
 
@@ -27,8 +37,7 @@ export default function Home() {
             <Navbar />
             <div className="bg-gradient-to-b from-blue-500 to-blue-800 pb-20">
                 <ParticlesBackground />
-                {/* Hero Screen */}
-                <div className="relative min-h-screen hero flex z-10" style={{ backgroundImage: "url(https://static.jakmall.id/2019/06/images/products/group/banners/6ade0b/original/alat-tulis-kantor.jpg)",}}>
+                <div className="relative min-h-screen hero flex z-10" style={{ backgroundImage: "url(https://static.jakmall.id/2019/06/images/products/group/banners/6ade0b/original/alat-tulis-kantor.jpg)" }}>
                     <div className="hero-overlay bg-opacity-60"></div>
                     <div className="text-center hero-content text-white">
                         <div>
@@ -44,34 +53,29 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* Arrow Down */}
-                {/* <div className="flex justify-center mt-10 text-black relative z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-28">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                    </svg>
-                </div> */}
-
-
-                {/* Category */}
-                {/* <div className="category pb-40">
-                    <h1 className="font-bold text-white justify-center text-2xl md:text-4xl r pt-5 flex relative z-10">Category</h1>
+                <div className="category pb-40">
+                    <h1 className="font-bold text-white justify-center text-2xl md:text-4xl pt-28 flex relative z-10">Type List</h1>
                     <div className="pt-8">
                         <div className="flex items-center justify-center">
-                            <div className="p-2 rounded-xl shadow-2xl w-full max-w-xs md:max-w-7xl backdrop-filter backdrop-blur-lg">
-
+                            <div className="p-2 rounded-3xl shadow-2xl w-full max-w-xs md:max-w-7xl backdrop-filter backdrop-blur-lg border-4 border-white">
+                                {types.length > 0 ? (
+                                    <div className="grid grid-cols-2 md:grid-cols-6 gap-4 p-4">
+                                        {types.map((type, index) => (
+                                            <div key={index} className="bg-gray-200 text-center py-3 rounded-xl shadow-md">
+                                                <span className="block truncate max-w-full text-ellipsis whitespace-nowrap font-bold text-black">
+                                                    {type}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p className="text-center text-white text-2xl pt-10 pb-10 font-bold">No types available</p>
+                                )}
                             </div>
                         </div>
                     </div>
-                </div> */}
-
-                {/* Arrow Down */}
-                <div className="flex justify-center mt-5 text-black relative z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-28">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                    </svg>
                 </div>
 
-                {/* Product */}
                 <div className="product">
                     <h1 className="font-bold text-white justify-center text-2xl md:text-4xl pt-5 flex relative z-10">Our Product</h1>
                     <div className="pt-8">
@@ -96,7 +100,7 @@ export default function Home() {
                                         ))}
                                     </div>
                                 ) : (
-                                    <p className="text-center text-white text-2xl pt-2 font-bold">No products available</p>
+                                    <p className="text-center text-white text-2xl pt-10 pb-6 font-bold">No products available</p>
                                 )}
                                 <div className="flex justify-center pt-4">
                                     <Link href="/shopTokoEni">

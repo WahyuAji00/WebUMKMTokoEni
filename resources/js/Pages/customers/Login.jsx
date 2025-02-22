@@ -17,6 +17,7 @@ export default function  Login() {
         <div data-theme="light">
             <title>Login Toko Eni</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+            <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
 
             <div className="min-h-screen flex items-center justify-center" style={{ backgroundImage: "url(https://www.mbizmarket.co.id/news/wp-content/uploads/2022/06/Untitled-design-2.png)", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}>
                 <div className="p-8 rounded-xl shadow-2xl w-full max-w-xs md:max-w-lg backdrop-filter backdrop-blur-lg">
@@ -34,9 +35,9 @@ export default function  Login() {
                             <input type="password" className="mt-1 mb-7 w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring=blue-600" placeholder="Enter Your Password" id="password" name="password" value={data.password} onChange={(event) => setData('password', event.target.value)} required />
                         </div>
                         <div className="form-control mb-3">
-                            <label className="label cursor-pointer flex items-center">
-                                <input type="checkbox" className="checkbox mr-2 w-4 h-4" name="remember" id="remember" checked={data.remember} onChange={(event) => setData('remember', event.target.checked)} />
-                                <span className="label-text text-lg">Remember me</span>
+                            <label className="inline-flex items-center gap-3">
+                                <input type="checkbox" className="checkbox checkbox-primary w-4 h-4" name="remember" id="remember" checked={data.remember} onChange={(event) => setData('remember', event.target.checked)} />
+                                <span className="text-lg">Remember me</span>
                             </label>
                         </div>
                         <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">{processing ? 'Logging In...' : 'Login'}</button>

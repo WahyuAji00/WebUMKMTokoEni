@@ -6,7 +6,7 @@ import { Link } from "@inertiajs/react";
 
 export default function Shop() {
     const [products, setProducts] = useState([]);
-    const [visibleCount, setVisibleCount] = useState(6);
+    const [visibleCount, setVisibleCount] = useState(18);
     const [loading, setLoading] = useState(false);
     const [selectedType, setSelectedType] = useState("All");
     const [sortOrder, setSortOrder] = useState("Reset");
@@ -62,13 +62,13 @@ export default function Shop() {
     return (
         <div data-theme="light">
             <title>Shop Toko Eni</title>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" />
-            <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css" rel="stylesheet" type="text/css" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+            <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
 
             <Navbar />
-            <div className="bg-gradient-to-b from-blue-500 to-blue-800 pb-14">
+            <div className="min-h-screen bg-gradient-to-b from-blue-500 to-blue-800 pb-14">
                 <ParticlesBackground />
-                <div className="text-center text-white">
+                <div className="text-center text-white relative z-10">
                     <h1 className="font-extrabold text-2xl md:text-4xl pt-16 md:pt-20 mb-5">Products</h1>
                     <p className="max-w-xs md:max-w-sm mx-auto mb-3 font-bold">
                         Temukan berbagai Alat Tulis Kantor berkualitas

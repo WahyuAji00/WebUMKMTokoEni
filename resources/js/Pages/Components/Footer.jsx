@@ -1,30 +1,24 @@
 import React from "react";
+import { Link } from "@inertiajs/react";
 
 export default function Footer() {
     return(
         <div>
-            {/* Footer */}
-            <footer className="footer bg-neutral text-neutral-content p-10 relative">
-                <nav>
-                    <h6 className="footer-title">Services</h6>
-                    <a className="link link-hover">Branding</a>
-                    <a className="link link-hover">Design</a>
-                    <a className="link link-hover">Marketing</a>
-                    <a className="link link-hover">Advertisement</a>
+            <footer className="footer footer-center bg-base-200 text-base-content rounded p-10 relative">
+                <nav className="grid grid-flow-col gap-4">
+                    <Link href="/aboutTokoEni">
+                        About us
+                    </Link>
+                    <Link href="/">
+                        Home
+                    </Link>
+                    <Link href="/shopTokoEni">
+                        Shop
+                    </Link>
                 </nav>
-                <nav>
-                    <h6 className="footer-title">Company</h6>
-                    <a className="link link-hover">About us</a>
-                    <a className="link link-hover">Contact</a>
-                    <a className="link link-hover">Jobs</a>
-                    <a className="link link-hover">Press kit</a>
-                </nav>
-                <nav>
-                    <h6 className="footer-title">Legal</h6>
-                    <a className="link link-hover">Terms of use</a>
-                    <a className="link link-hover">Privacy policy</a>
-                    <a className="link link-hover">Cookie policy</a>
-                </nav>
+                <aside>
+                    <p>Copyright © {new Date().getFullYear()} - All right reserved by Toko Eni</p>
+                </aside>
             </footer>
         </div>
     )

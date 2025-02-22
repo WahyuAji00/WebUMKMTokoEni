@@ -74,21 +74,31 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')
+                    ->alignCenter()
+                    ->sortable()
                     ->label('No.'),
                 ImageColumn::make('image')
+                    ->alignCenter()
                     ->defaultImageUrl('storage/productsImages/{filename}')
+                    ->size(84)
                     ->square(),
                 TextColumn::make('name')
+                    ->alignCenter()
                     ->searchable()
+                    ->sortable()
                     ->label('Product Name'),
                 TextColumn::make('price')
+                    ->alignCenter()
                     ->numeric(),
                 TextColumn::make('stock')
+                    ->alignCenter()
                     ->numeric(),
                 TextColumn::make('sku')
+                    ->alignCenter()
                     ->searchable()
                     ->label('Unique Code'),
-                TextColumn::make('type'),
+                TextColumn::make('type')
+                    ->alignCenter(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

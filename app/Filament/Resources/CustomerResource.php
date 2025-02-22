@@ -61,12 +61,23 @@ class CustomerResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')
+                    ->alignCenter()
                     ->label('No.'),
                 TextColumn::make('name')
+                    ->alignCenter()
                     ->searchable(),
-                TextColumn::make('email'),
-                TextColumn::make('phone'),
-                TextColumn::make('address'),
+                TextColumn::make('email')
+                    ->alignCenter(),
+                TextColumn::make('phone')
+                    ->getStateUsing(function ($record) {
+                        return $record->textColumn ?: '-';
+                    })
+                    ->alignCenter(),
+                TextColumn::make('address')
+                    ->getStateUsing(function ($record) {
+                        return $record->textColumn ?: '-';
+                    })
+                    ->alignCenter(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

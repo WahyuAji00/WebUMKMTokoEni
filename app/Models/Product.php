@@ -27,11 +27,6 @@ class Product extends Model
         'deleted_at'
     ];
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
     public function reduceStock($quantity)
     {
         if ($this->stock >= $quantity) {

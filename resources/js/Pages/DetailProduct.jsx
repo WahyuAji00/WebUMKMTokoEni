@@ -3,10 +3,12 @@ import Navbar from "./Components/Navbar";
 import ParticlesBackground from "./Components/ParticlesBackground";
 import { Link } from "@inertiajs/react";
 import Footer from "./Components/Footer";
+import { router } from "@inertiajs/react";
 
 export default function DetailProduct({ product }) {
     const [quantity, setQuantity] = useState(1);
     const [availableStock, setAvailableStock] = useState(product?.stock || 0);
+    const [alert, setAlert] = useState(null);
 
     const handleQuantityChange = (event) => {
         const value = parseInt(event.target.value, 10);
@@ -17,8 +19,18 @@ export default function DetailProduct({ product }) {
     };
 
     const handleAddToCart = () => {
-        alert('Added ${quantity} ${product.name} to cart');
-    }
+        router.post('/cartTokoEni',
+            { product_id: product.id, quantity: quantity }, {
+                onSuccess: () => {
+                    setAlert({ type: "success", message: "Produk berhasil ditambahkan ke keranjang!" });
+                    setTimeout(() => setAlert(null), 3000);
+                }, onError: () => {
+                    setAlert({ type: "error", message: "Gagal menambahkan produk ke keranjang!" });
+                    setTimeout(() => setAlert(null), 3000);
+                }
+            });
+    };
+
 
     return (
         <div data-theme="light">
@@ -27,10 +39,19 @@ export default function DetailProduct({ product }) {
             <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
 
             <Navbar />
-            <div className="min-h-screen bg-gradient-to-b from-red-600 to-red-800 pb-10">
+            <div className="min-h-screen bg-gradient-to-b from-red-500 to-red-800 pb-10">
                 <ParticlesBackground />
                 <div className="flex items-center justify-center pt-24">
                     <div className="p-8 rounded-3xl shadow-2xl w-full max-w-xs md:max-w-7xl backdrop-filter backdrop-blur-lg border-4 border-white">
+                        {/* Alert Notification */}
+                        {alert && (
+                            <div className={`alert ${alert.type === "success" ? "alert-success" : "alert-error"} shadow-xl mb-4`}>
+                                <div className="font-bold text-white">
+                                    <span>{alert.message}</span>
+                                </div>
+                            </div>
+                        )}
+
                         {/* Breadcrumb */}
                         <div className="text-white text-sm md:text-base mb-14">
                             <Link href="/shopTokoEni" className="hover:underline font-bold">Shop</Link> &gt;
@@ -44,7 +65,7 @@ export default function DetailProduct({ product }) {
                             <div className="flex-1">
                                 <h1 className="text-2xl font-bold text-white md:text-3xl ">{product.name}</h1>
                                 <hr className="my-4 border-black border-b-4" />
-                                <h3 className="text-lg md:text-xl font-bold text-white">IDR {product.price.toLocaleString("id-ID", { minimumFractionDigits: 2 })}</h3>
+                                <h3 className="text-lg md:text-xl font-bold text-white">IDR {product.price.toLocaleString("id-ID", { minimumFractionDigits: 3 })}</h3>
                                 {/* Quantity Selector */}
                                 <div className="mt-4 flex items-center gap-4">
                                     <h5 className="text-lg font-bold text-white">Qty:</h5>
@@ -63,7 +84,7 @@ export default function DetailProduct({ product }) {
                                     <p className="mt-2 leading-relaxed">{product.description}</p>
                                 </div>
                                 <p className="text-white mt-2"><strong>Stock:</strong> {availableStock}</p>
-                                <p className="text-white mt-2"><strong>Category:</strong> {product.category}</p>
+                                <p className="text-white mt-2"><strong>Type:</strong> {product.type}</p>
                             </div>
                         </div>
                     </div>

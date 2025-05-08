@@ -5,10 +5,13 @@ import ParticlesBackground from "./Components/ParticlesBackground";
 import Footer from "./Components/Footer";
 
 export default function Home() {
+    // Menyimpan data dari API
     const [products, setProducts] = useState([]);
     const [types, setTypes] = useState([]);
 
+    // Mengambil data dari API Laravel saat pertama kali komponen dimuat
     useEffect(() => {
+        // Ambil data product dari API
         fetch("http://127.0.0.1:8000/api/products")
             .then(response => response.json())
             .then(data => {
@@ -18,6 +21,7 @@ export default function Home() {
                 console.error("Error fetching products:", error);
             });
 
+        // Ambil data type dari API
         fetch("http://127.0.0.1:8000/api/types")
             .then(response => response.json())
             .then(data => {

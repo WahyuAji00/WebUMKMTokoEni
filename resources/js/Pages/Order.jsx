@@ -5,9 +5,9 @@ import ParticlesBackground from "./Components/ParticlesBackground";
 import Footer from "./Components/Footer";
 
 export default function Order() {
-    const { customer, cart = [] } = usePage().props;
-    const checkedCart = cart.filter(item => item.is_checked);
-    const total_price = checkedCart.reduce((sum, item) => sum + (item.product?.price || 0) * (item.quantity || 0), 0);
+    const { customer, cart = [] } = usePage().props; // Ambil data customer dan cart dari props
+    const checkedCart = cart.filter(item => item.is_checked); // Menyaring hanya item yang di centang
+    const total_price = checkedCart.reduce((sum, item) => sum + (item.product?.price || 0) * (item.quantity || 0), 0); // Menjumlah total item yang dicentang
 
     const { data, setData, post, processing } = useForm({
         name: customer?.name || "",
@@ -82,7 +82,7 @@ export default function Order() {
                             </div>
                             <div>
                                 <label className="block text-white text-sm font-bold mb-2">Phone Number</label>
-                                <input type="text" name="phone" className="input input-bordered w-full" value={data.phone} onChange={handleInputChange} required />
+                                <input type="text" name="phone" className="input input-bordered w-full" maxLength={12} value={data.phone} onChange={handleInputChange} required />
                             </div>
                             <div>
                                 <label className="block text-white text-sm font-bold mb-2">Address</label>

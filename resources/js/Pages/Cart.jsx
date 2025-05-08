@@ -86,6 +86,28 @@ export default function Cart() {
         }
     };
 
+    const handleRemoveFromCart = async (id) => {
+        try {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+            const response = await fetch(`/cartTokoEni/remove/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "X-CSRF-TOKEN": csrfToken,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error("Gagal menghapus item dari cart");
+            }
+
+            // Hapus item dari state lokal
+            setCartItems(prevItems => prevItems.filter(item => item.id !== id));
+            setSelectedItems(prevSelected => prevSelected.filter(selectedId => selectedId !== id));
+        } catch (error) {
+            console.error("Error deleting cart item:", error.message);
+        }
+    };
+
     return (
         <div data-theme="light">
             <title>Cart Toko Eni</title>

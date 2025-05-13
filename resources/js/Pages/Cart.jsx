@@ -75,7 +75,7 @@ export default function Cart() {
             if (!response.ok) {
                 throw new Error("Failed to update quantity");
             }
-            //hi
+
             const updatedItem = await response.json();
 
             setCartItems(cartItems.map(item =>
